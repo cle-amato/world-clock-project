@@ -1,4 +1,4 @@
-function showLondonTime() {
+function showCitiesTime() {
   let londonElement = document.querySelector("#london");
   if (londonElement) {
     let londonDateElement = londonElement.querySelector(".current-date");
@@ -13,9 +13,6 @@ function showLondonTime() {
     londonDateElement.innerHTML = londonCurrentDate;
     londonTimeELement.innerHTML = londonCurrentTime;
   }
-}
-
-function showNewYorkTime() {
   let newYorkElement = document.querySelector("#new-york");
   if (newYorkElement) {
     let newYorkDateElement = newYorkElement.querySelector(".current-date");
@@ -29,6 +26,20 @@ function showNewYorkTime() {
 
     newYorkDateElement.innerHTML = newYorkCurrentDate;
     newYorkTimeElement.innerHTML = newYorkCurrentTime;
+  }
+  let sydneyElement = document.querySelector("#sydney");
+  if (sydneyElement) {
+    let sydneyDateElement = sydneyElement.querySelector(".current-date");
+    let sydneyTimeElement = sydneyElement.querySelector(".current-time");
+    let sydneyCurrentDate = moment()
+      .tz("Australia/Sydney")
+      .format("dddd Do MMM YYYY");
+    let sydneyCurrentTime = moment()
+      .tz("Australia/Sydney")
+      .format("h:mm:ss [<small>]A[</small>]");
+
+    sydneyDateElement.innerHTML = sydneyCurrentDate;
+    sydneyTimeElement.innerHTML = sydneyCurrentTime;
   }
 }
 
@@ -57,10 +68,8 @@ function updateCity(event) {
           `;
 }
 
-showLondonTime();
-showNewYorkTime();
-setInterval(showLondonTime, 1000);
-setInterval(showNewYorkTime, 1000);
+showCitiesTime();
+setInterval(showCitiesTime, 1000);
 
 let citySelectElement = document.querySelector("#city-select");
 citySelectElement.addEventListener("change", updateCity);
