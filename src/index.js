@@ -34,14 +34,16 @@ function showNewYorkTime() {
 
 function updateCity(event) {
   let selectedTimeZone = event.target.value;
-  if (event.target.value) {
-    let cityName = selectedTimeZone.replace("_", " ").split("/")[1];
-    let cityTime = moment()
-      .tz(selectedTimeZone)
-      .format("h:mm:ss [<small>]A[</small>]");
-    let cityDate = moment().tz(selectedTimeZone).format("dddd Do MMM YYYY");
-    let citiesElement = document.querySelector("#cities");
-    citiesElement.innerHTML = `
+  if (selectedTimeZone === "current") {
+    selectedTimeZone = moment.tz.guess();
+  }
+  let cityName = selectedTimeZone.replace("_", " ").split("/")[1];
+  let cityTime = moment()
+    .tz(selectedTimeZone)
+    .format("h:mm:ss [<small>]A[</small>]");
+  let cityDate = moment().tz(selectedTimeZone).format("dddd Do MMM YYYY");
+  let citiesElement = document.querySelector("#cities");
+  citiesElement.innerHTML = `
   <div class="city">
           <div>
             <h2>${cityName}</h2>
@@ -50,7 +52,6 @@ function updateCity(event) {
           <div>
             <div class="current-time">${cityTime}</div>
           </div>`;
-  }
 }
 
 showLondonTime();
