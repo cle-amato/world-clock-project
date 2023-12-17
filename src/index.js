@@ -51,7 +51,10 @@ function updateCity(event) {
           </div>
           <div>
             <div class="current-time">${cityTime}</div>
-          </div>`;
+          </div>
+          </div>
+          <a href="/">All cities</a>
+          `;
 }
 
 showLondonTime();
